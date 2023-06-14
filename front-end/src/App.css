@@ -1,0 +1,495 @@
+* {
+    font-family: Montserrat, sans-serif;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  -webkit-user-drag: none; /* Safari */
+  -khtml-user-drag: none; /* Konqueror HTML */
+  -moz-user-drag: none; /* Firefox */
+  -o-user-drag: none; /* Old versions of Opera */
+  border-radius: 10px 10px 0px 0px;
+}
+
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+ .navbar {
+    background-color: #e55e25;
+    height: 70px; /* Adjust the height as needed */
+  }
+  
+  .navbar-brand {
+    color: #fff;
+  }
+  
+  .nav-link {
+    background-color: #e55e25;
+    color: #fff !important;
+    font-size: 15px;
+    letter-spacing: 3px;
+    height: 100%; /* Ensures the tab height matches the navbar height */
+    display: flex; /* Aligns the text vertically */
+    justify-content: space-between;
+    align-items: center; /* Centers the text vertically */
+    padding: 23px; /* Adds padding to the tabs */
+    column-gap: 5px; 
+    margin-right: 25px;
+  }
+  
+  .nav-link:hover {
+    color: #e55e25 !important ;
+    background-color: #fff;
+    padding: 23px;
+  }
+  
+  .navbar a.navbar-brand img {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+  }
+
+ .dropdown-item {
+    color: #e55e25;
+    letter-spacing: 0.2px;
+ }
+
+ .dropdown-menu .dropdown-item:hover {
+    color: #fff !important;
+    background-color: #e55e25 !important;
+    display: flex;
+    align-items: center;
+  }
+
+/*Home Page*/
+
+.main-section{
+  overflow:hidden;
+    display: flex;
+    height: 100%;
+    z-index: 1;
+}
+  .home-cover {
+    padding-top: 70px;
+    height: 100vh;
+  }
+  
+  .home-text-container {
+    position: absolute;
+      top: 40%;
+      left: 5%;
+      margin: auto;
+    text-align: left;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .home-text-container {
+      position: absolute;
+        top: 35%;
+        left: 5%;
+        margin: auto;
+      text-align: left;
+    }
+
+  }
+  
+  .home-text-container h1, h2, p {
+    color: white;
+    text-align: left;
+  }
+  
+  .home-text-container h1 {
+    font-size: 80px;
+    font-weight: 700;
+  }
+
+  .home-text-container h2 {
+    font-size: 40px;
+    font-weight: 500;
+  }
+  
+  .home-text-container p{
+    font-size: 25px;
+    text-align: left;
+  }
+
+  .dig-in{
+    margin-top: 10px;
+    width: 200px;
+    border-radius: 25px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #e55e25;
+    border: none;
+  }
+
+  .dig-in-text {
+    color: white;
+  }
+
+  .dig-in-text:hover {
+    color: white;
+    opacity: 0.8;
+    text-decoration: none;
+  }
+
+/*Menu Page*/
+
+.cover {
+  padding-top: 70px;
+  height: 500px;
+}
+  
+.text-container {
+  position: absolute;
+  top:23%;
+  left: 15%;
+  right: 15%;
+  margin: auto;
+  text-align: center;
+}
+  
+.text-container h1, p {
+  color: white;
+}
+  
+.text-container h1 {
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+}
+  
+.text-container p{
+  font-size: 25px;
+  text-align: center;
+}
+
+.video-container{
+  z-index: -1;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  z-index: 1;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+  
+.menu {
+  padding: 50px;
+  flex: 1;
+  background-color: #e1e1e1;
+  overflow-y: auto;
+  box-shadow: 0px 0px 3px #888888;
+  z-index: 1;
+}
+
+.menu-category{
+  color: black;
+}
+  
+.cart {
+  padding: 50px;
+  flex: 0.5;
+  position: sticky;
+  top: 50px;
+  background-color: #efefef;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+  box-shadow: 0px 0px 3px #888888;
+  }
+
+  .menu-item {
+    background-color: white;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0px 3px 5px #888888;
+  }
+
+  .item-picture{
+    width: 220px;
+    height: 220px;
+    margin-bottom: 20px;
+  }
+
+  .item-subname{
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .item-name {
+    font-size: 20px;
+  }
+
+  hr.solid{
+    border-top: 2px solid #bbb;
+    margin-bottom: 10px;
+  }
+  
+.item-price{
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+  .order-item{
+    width: 100%;
+    border-radius: 25px;
+    height: 40px;
+    border: none;
+    background-color: #e55e25;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* CSS for the cart list */
+  .cart-list {
+    padding: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .quantity-container {
+    display: flex;
+    margin-right: 10px;
+  }
+  
+  .quantity-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #e55e25;
+    color: #e55e25;
+    background: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .quantity-btn:focus {
+    outline: #e55e25;
+    border-color: #e55e25;
+  }
+  
+  .quantity {
+    width: 50px; /* Set a fixed width for the quantity element */
+    padding: 5px;
+    padding-right: 7px;
+    text-align: center;
+    font-weight:600;
+  }
+
+  
+  .cart .item-name {
+  padding-left: 15px;
+  width: 400px; /* Set your desired fixed width here */
+  font-size: 15px;
+  font-weight: bold;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart .price {
+  margin-left: auto;
+}
+
+.customer-details input[type="text"], .customer-details select {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #totalPriceContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  #totalText{
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    width: 455px;
+    white-space: nowrap;
+  }
+
+  #deliveryFeeContainer {
+    width: 45px;
+    white-space: nowrap;
+    margin-right: 25px;
+  }
+
+  #totalPrice{
+    font-weight: bold;
+  }
+
+  .reset{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 25px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border: 2px solid #e55e25;
+    color: #e55e25;
+    padding: 0rem 1.5rem;
+    margin-right: 10px;
+    flex: 1;
+  }
+
+  .checkout{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 25px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #e55e25;
+    border: none;
+    color: white;
+  }
+
+.input {
+    outline: none;
+    width: 90%;
+    border: 2px solid #d4d4d4;
+    background: white;
+    padding: 0.6rem 1.2rem;
+    font-weight: 400;
+    font-size: 0.95rem;
+    height: 50px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.buttons-container{
+  display:Flex;
+}
+
+
+.method-container {
+  display: flex;
+}
+
+#orderMethod {
+  background-color: rgb(246, 225, 200);
+  border: 2px solid #d4d4d4;
+  border-radius: 25px;
+  height: 50px;
+  padding: 0.6rem 1.2rem;
+  margin-right: 10px;
+  flex: 1;
+}
+
+#paymentMethod {
+  background-color: rgb(246, 225, 200);
+  border: 2px solid #d4d4d4;
+  border-radius: 25px;
+  height: 50px;
+  padding: 0.6rem 1.2rem;
+  flex: 1;
+}
+
+footer{
+  background-color: #e55e25;
+  margin-top: 0px;
+  color: white;
+  padding: 40px;
+}
+
+footer h2{
+  font-weight: bold;
+}
+
+footer p{
+  margin-bottom: 0px;
+}
+
+.footer-menu a{
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.footer-menu a:hover {
+  color: #ffb292;
+}
+
+.bottom-page {
+  display: flex;
+  height: 100%;
+  z-index: 1;
+}
+  
+.left {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.left h4{
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 3px;
+}
+
+.left p{
+  text-align: left;
+}
+  
+.right {
+  padding: 20px;
+  flex: 0.5;
+  top: 50px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  }
+
+.right h2, p{
+  text-align: right;
+}
+
+.right h2{
+  margin-bottom: 38px;
+}
+
+.lineChart {
+  width: 60%;
+  font-family: Montserrat, sans-serif;
+}
+
+.barChart {
+  width: 60%;
+}
+
+.pieChart {
+  width: 60%;
+}
+
