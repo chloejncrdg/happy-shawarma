@@ -127,5 +127,5 @@ Hence, in the event that you have any inquiries or considerations, please do not
 - **Chaingan, Sharlene Mae F.**  - chaingansf@students.national-u.edu.ph
 - **Bala, Justin T.**            - balajt@students.national-u.edu.ph
 - **De Jesus, Jaster F.**        - dejesusjf@students.national-u.edu.ph
-- **Gulmatico, Renz Kervy**      - gulmaticord@students.national-u.edu.ph
+- **Gulmatico, Renz Kervy D.**      - gulmaticord@students.national-u.edu.ph
 - **Sibunga, Jy James Luke V.**  - sibungajv@students.national-u.edu.ph
