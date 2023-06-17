@@ -6,12 +6,12 @@ longganisa). They also offer a selection of mouth-watering Shawarma meals, which
 fresh vegetables, and tangy sauces wrapped in warm pita bread.
 
 ### Objectives 
-- Obtain the necessary information of the customers’ orders.
-- Display tables that show all the needed order information
-where the system identifies their categories and organize
-them accordingly.
-- Generate reports that will be beneficial for the business to
-keep track of their progress and challenges.
+- To obtain the necessary information of customers needed in registering their orders,
+- To identify the corresponding product details and prices of a customer’s selected order,
+- To document the orders of each customer in the database,
+- To integrate the needed SQL queries to utilize the database for tracking orders and performance, and
+- To display graphs and tables that show the information on the business’s overall performance and income.
+
 
 ### Languages & Tools
 - React JS
