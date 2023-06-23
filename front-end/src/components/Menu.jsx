@@ -16,7 +16,9 @@ import Customer from './order/Customer'
 
 export default function Menu() {
 
-  const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  const currentDate = new Date(); //Gets the date
+  currentDate.setUTCHours(currentDate.getUTCHours() + 8); // currentDate is being converted to the desired time (PH)
+  const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');  //formattedDate is the final date to be used ng database
 
   const [orderList, setOrderList] = useState([]);
   const cart = orderList.map(({ tempID, basePrice, ...rest }) => rest);  // To put in the database
@@ -36,7 +38,7 @@ export default function Menu() {
       const newOrder = {
         ...orderList[0], // Take the first order details object from the array
         tempID: crypto.randomUUID(),
-        orderDate: currentDate,
+        orderDate: formattedDate,
         productID: product.id,
         productName: product.title,
         quantity: +1,
@@ -61,7 +63,7 @@ export default function Menu() {
       const newOrder = {
         ...orderList[0], // Take the first order details object from the array
         tempID: crypto.randomUUID(),
-        orderDate: currentDate,
+        orderDate: formattedDate,
         productID: product.id,
         productName: product.upgrade,
         quantity: +1,
