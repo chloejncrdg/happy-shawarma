@@ -17,7 +17,6 @@ import Checkout from './order/Checkout'
 
 export default function Menu() {
 
-  // const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
   const currentDate = new Date()
   currentDate.setUTCHours(currentDate.getUTCHours() + 8)
