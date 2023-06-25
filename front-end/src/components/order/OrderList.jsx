@@ -8,6 +8,12 @@ export default function OrderList({ orderList, setOrderList, checkOut}) {
     const totalPrice = orderList.reduce((total, item) => 
     total + item.price, 0);
 
+    const requiredProperties = ['name', 'address', 'contact', 'orderMethod', 'paymentMethod'];
+
+    const allPropertiesExist = orderList.length > 0 && orderList.every((order) =>
+    requiredProperties.every((property) => order.hasOwnProperty(property))
+    );
+    
 
     function resetCart() {
         setOrderList([])
@@ -72,8 +78,15 @@ export default function OrderList({ orderList, setOrderList, checkOut}) {
         </div>
 
         <div className="buttons-container"> 
-            <button className="reset" onClick={resetCart}>RESET</button>
-            <button onClick={checkOut} className="checkout">CHECKOUT</button>          
+            {orderList.length > 0 && 
+                (
+                <button className="reset" onClick={resetCart}>RESET</button>
+                )}
+
+            {(allPropertiesExist && orderList.length) > 0 && 
+                (
+                    <button onClick={checkOut} className="checkout">CHECKOUT</button>
+                )}
         </div>
     
     </div>

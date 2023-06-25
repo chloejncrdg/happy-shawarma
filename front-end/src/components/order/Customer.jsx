@@ -62,7 +62,7 @@ export default function Customer({ orderList, setOrderList, checkOut, cart }) {
                 onChange={handleChange}
                 value={customerDetails.contact || ""}
                 disabled={orderList.length === 0}
-                required
+                required = {orderList.length > 0}
             />
         
         {/* Order and Payment Method */}

@@ -12,14 +12,21 @@ import silogCheese from "../products/silogCheese"
 import beverages from "../products/beverages"
 
 import Customer from './order/Customer'
+import Checkout from './order/Checkout'
 
 
 export default function Menu() {
 
-  const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  // const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+  const currentDate = new Date()
+  currentDate.setUTCHours(currentDate.getUTCHours() + 8)
+  const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
   const [orderList, setOrderList] = useState([]);
   const cart = orderList.map(({ tempID, basePrice, ...rest }) => rest);  // To put in the database
+
+  const [showOrder, setShowOrder] = useState(false)
  
 
     function addProduct(product) {
@@ -36,7 +43,7 @@ export default function Menu() {
       const newOrder = {
         ...orderList[0], // Take the first order details object from the array
         tempID: crypto.randomUUID(),
-        orderDate: currentDate,
+        orderDate: formattedDate,
         productID: product.id,
         productName: product.title,
         quantity: +1,
@@ -61,7 +68,7 @@ export default function Menu() {
       const newOrder = {
         ...orderList[0], // Take the first order details object from the array
         tempID: crypto.randomUUID(),
-        orderDate: currentDate,
+        orderDate: formattedDate,
         productID: product.id,
         productName: product.upgrade,
         quantity: +1,
@@ -74,6 +81,7 @@ export default function Menu() {
 
     async function checkOut(event) {
       event.preventDefault()
+      setShowOrder(prevState => !prevState)
       console.log(cart)
       try {
         await axios.post("http://localhost:8800/orders", cart)
@@ -81,6 +89,7 @@ export default function Menu() {
         console.log(err)
       }
     }
+    
 
     
   return (
@@ -191,10 +200,7 @@ export default function Menu() {
   
            /> 
         </div>
-
-       
       </main>
-
       <footer>
         <div className='bottom-page'>
           <div className="bottom-page left"> 
@@ -213,6 +219,13 @@ export default function Menu() {
           </div>
         </div>
       </footer>
+      {showOrder && <Checkout
+        orderList = {orderList}
+        setOrderList = {setOrderList}
+        setShowOrder = {setShowOrder}
+      />}
+
+
 
     </div>
   )
