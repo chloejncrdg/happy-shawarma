@@ -55,7 +55,6 @@ export default function OrderList({ orderList, setOrderList, checkOut}) {
     <div>
         <br/>
         <center><h3>My Cart</h3></center>
-
         <div className='cart-list' id='cartList'>
             {orderList.map((item) => (
                 <div className='cart-item' key={item.tempID}>

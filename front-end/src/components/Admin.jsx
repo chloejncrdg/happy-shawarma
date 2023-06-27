@@ -31,6 +31,11 @@ export default function Admin() {
   const [countArray, setCountArray] = useState([])
   const [countDateArray, setCountDateArray] = useState([])
 
+  //for piechart
+  const [groupBestSelling, setGroupBestSelling] = useState([]);
+  const [sellingProductsArray, setSellingProductsArray] = useState([]);
+  const [sellingCountArray, setSellingCountArray] = useState([]);
+
   useEffect(() => {
     handleDailyIncome()
     handleWeeklyIncome()
@@ -41,6 +46,7 @@ export default function Admin() {
     handleGroupCount()
     handleBestSelling()
     displayOrderList()
+    handleGroupBestSelling()
   }, [])
 
   useEffect(() => {
@@ -61,7 +67,10 @@ export default function Admin() {
         return currentDate.toISOString().slice(0, 10).replace('T', ' ');
       })
     );
-  }, [groupIncome, groupCount]);
+
+    setSellingProductsArray(groupBestSelling.map((obj) => obj.productName));
+    setSellingCountArray(groupBestSelling.map((obj) => obj.totalOrders));
+  }, [groupIncome, groupCount, groupBestSelling]);
 
   
   async function handleDailyIncome() {
@@ -97,7 +106,7 @@ export default function Admin() {
   async function handleAvgDailyIncome() {
     try {
       const response = await axios.get("http://localhost:8800/avgDailyIncome")
-      const avgResult = response.data[0]['AVG(price)'];
+      const avgResult = response.data[0]['AVG(daily_price)'];
       setAvgDailyIncome(avgResult)
     } catch (error) {
       console.log(error);
@@ -107,7 +116,7 @@ export default function Admin() {
   async function handleAvgOrderCount() {
     try {
       const response = await axios.get("http://localhost:8800/avgCountOrders")
-      const avgOrderCount = response.data[0]['AVG(quantity)'];
+      const avgOrderCount = response.data[0]['AVG(daily_order_count)'];
       setAvgOrderCount(avgOrderCount)
     } catch (error) {
       console.log(error);
@@ -154,6 +163,16 @@ export default function Admin() {
     }
   }
 
+  async function handleGroupBestSelling() {
+    try {
+      const response = await axios.get("http://localhost:8800/groupBestSelling");
+      const bestSellingData = response.data;
+      setGroupBestSelling(bestSellingData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
 
@@ -168,15 +187,10 @@ export default function Admin() {
                   <li className="nav-item">
                     <a className="nav-link" href="/">HOME</a>
                   </li>
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="/menu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/menu" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       MENU
                     </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a className="dropdown-item" href="menu.html#silog">Silog Meals</a>
-                      <a className="dropdown-item" href="menu.html#shawarma">Shawarma Meals</a>
-                      <a className="dropdown-item" href="menu.html#beverages">Beverages</a>
-                    </div>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href='/admin'>ADMIN</a>
@@ -202,19 +216,19 @@ export default function Admin() {
               <div className='admin-grid'>
                 <div className='admin-report'>
                   <h1 className='report-title'>Total Income for today:</h1>
-                  <h1>{dailyIncome}</h1>
+                  <h1>₱ {dailyIncome}</h1>
                 </div>
                 <div className='admin-report'>
                   <h1 className='report-title'>Weekly Income:</h1>
-                  <h1>{weeklyIncome}</h1>
+                  <h1>₱ {weeklyIncome}</h1>
                 </div>
                 <div className='admin-report'>
                   <h1 className='report-title'>Daily order count:</h1>
                   <h1>{orderCount}</h1>
                 </div>
                 <div className='admin-report'>
-                  <h1 className='report-title'>Average Daily Income:</h1>
-                  <h1>{avgDailyIncome}</h1>
+                  <h1 className='report-title'>Average Weekly Income:</h1>
+                  <h1>₱ {avgDailyIncome}</h1>
                 </div>
                 <div className='admin-report'>
                   <h1 className='report-title'>Average Orders for the Week: </h1>
@@ -257,7 +271,8 @@ export default function Admin() {
         </div>
 
         <div className='grid-charts'>
-          <div className='lineChart'>
+          <div className='chart'>
+            <h1>7 DAYS INCOME</h1>
                 <CChart
                 type="line" 
                 data={{
@@ -279,7 +294,8 @@ export default function Admin() {
               />
             </div>
 
-            <div className='barChart'>
+            <div className='chart'>
+              <h1>7 DAYS ORDER COUNT</h1>
               <CChart
               type="bar"
               data={{
@@ -287,7 +303,7 @@ export default function Admin() {
                 datasets: [
                   {
                     label: 'Order Count',
-                    backgroundColor: ' #FF8C00',
+                    backgroundColor: ['#E55E25', '#FFB374', '#A92A00', '#4E0000', '#DB9D84'],
                     data: countArray,
                   },
                 ],
@@ -296,16 +312,18 @@ export default function Admin() {
             />
             </div>
 
-            <div className='pieChart'>
+            <div className='chart'>
+              <h1>5 BEST-SELLING PRODUCTS</h1>
               <CChart
+                className="pieChart"
                 type="doughnut"
                 data={{
-                  labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                  labels: sellingProductsArray,
                   datasets: 
                   [
                     {
-                      backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                      data: [40, 20, 80, 10],
+                      backgroundColor: ['#E55E25', '#FFB374', '#A92A00', '#4E0000', '#DB9D84'],
+                      data: sellingCountArray,
                     },
                   ],
                 }}

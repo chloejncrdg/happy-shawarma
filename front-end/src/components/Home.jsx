@@ -21,14 +21,9 @@ export default function Home() {
                   <a className="nav-link" href="/">HOME</a>
                 </li>
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="/menu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a className="nav-link" href="/menu" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     MENU
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="menu.html#silog">Silog Meals</a>
-                    <a className="dropdown-item" href="menu.html#shawarma">Shawarma Meals</a>
-                    <a className="dropdown-item" href="menu.html#beverages">Beverages</a>
-                  </div>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href='/admin'>ADMIN</a>

@@ -73,7 +73,9 @@ app.get("/dailycount", (req, res) => {
 })
 
 app.get("/avgDailyIncome", (req, res) => {
-    const q = "SELECT AVG(price) FROM orderdetails WHERE orderDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);"
+    const q = `SELECT AVG(daily_price) FROM ( SELECT DATE(orderDate) AS order_date, 
+    SUM(price) AS daily_price FROM orderdetails WHERE orderDate >= DATE_SUB(CURDATE(), 
+    INTERVAL 7 DAY) GROUP BY order_date ) AS daily_price_subquery;`
     db.query(q, (err, data) => {
         if (err) return res.json(err)
         return res.send(data)
@@ -81,7 +83,9 @@ app.get("/avgDailyIncome", (req, res) => {
 })
 
 app.get("/avgCountOrders", (req, res) => {
-    const q = "SELECT AVG(quantity) FROM orderdetails WHERE orderDate >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);"
+    const q = `SELECT AVG(daily_order_count) FROM ( SELECT DATE(orderDate) AS order_date, 
+    SUM(quantity) AS daily_order_count FROM orderdetails WHERE orderDate >= DATE_SUB(CURDATE(), 
+    INTERVAL 7 DAY) GROUP BY order_date ) AS daily_orders_subquery;`
     db.query(q, (err, data) => {
         if (err) return res.json(err)
         return res.send(data)
@@ -105,7 +109,7 @@ app.get("/groupCount", (req, res) => {
 })
 
 app.get("/bestSelling", (req, res) => {
-    const q = "SELECT productName FROM orderdetails WHERE quantity = (SELECT MAX(quantity) FROM orderdetails);"
+    const q = "SELECT productName FROM happy_shawarma.orderdetails GROUP BY productName ORDER BY COUNT(productID) DESC LIMIT 1;"
     db.query(q, (err, data) => {
         if (err) return res.json(err)
         return res.send(data)
@@ -113,12 +117,30 @@ app.get("/bestSelling", (req, res) => {
 })
 
 app.get("/displayOrders", (req, res) => {
-    const q = "SELECT name, address, contact, orderMethod, paymentMethod, GROUP_CONCAT(CONCAT(quantity, ' x ', productName) SEPARATOR ', ') AS orders FROM orderdetails WHERE DATE(orderDate) = CURDATE() GROUP BY name, address, contact, orderMethod, paymentMethod;"
+    const q = "SELECT name, address, contact, orderMethod, paymentMethod, orders FROM (SELECT name, address, contact, orderMethod, paymentMethod, GROUP_CONCAT(CONCAT(quantity, ' x ', productName) SEPARATOR ', ') AS orders, MAX(orderID) AS maxOrderID FROM orderdetails WHERE DATE(orderDate) = CURDATE() GROUP BY name, address, contact, orderMethod, paymentMethod) AS subquery ORDER BY maxOrderID;"
     db.query(q, (err, data) => {
         if (err) return res.json(err)
         return res.send(data)
     })
 })
+
+app.get("/groupBestSelling", (req, res) => {
+    const q = `
+    SELECT
+        productName,
+        COUNT(productID) AS totalOrders
+    FROM
+        orderdetails
+    GROUP BY
+        productName
+    ORDER BY
+        totalOrders DESC
+    LIMIT 5;`
+    db.query(q, (err, data) => {
+        if (err) return res.json(err);
+        return res.send(data);
+    });
+});
 
 
 app.listen(8800, ()=> {

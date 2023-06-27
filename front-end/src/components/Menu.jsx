@@ -104,15 +104,10 @@ export default function Menu() {
                 <li className="nav-item">
                   <a className="nav-link" href="/">HOME</a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="/menu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li className="nav-item">
+                  <a className="nav-link" href="/menu" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     MENU
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="menu.html#silog">Silog Meals</a>
-                    <a className="dropdown-item" href="menu.html#shawarma">Shawarma Meals</a>
-                    <a className="dropdown-item" href="menu.html#beverages">Beverages</a>
-                  </div>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href='/admin'>ADMIN</a>
@@ -134,6 +129,7 @@ export default function Menu() {
         <div className='content'>
           <div className='menu'>
             <h2 className='menu-category' id='shawarma'>Shawarma Meals</h2>
+            <h3 className='step'>Step 1: Choose your order</h3>
             <br/>
             <div className='menu-grid'>
               {shawarmaMeals.map((product) => (

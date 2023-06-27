@@ -21,6 +21,7 @@ export default function Customer({ orderList, setOrderList, checkOut, cart }) {
   return (
     <div className='cart'>
         <div className='customer-details'>
+            <h3 className='step'>Step 2: Enter your details</h3>
             <center><h3>My Details</h3></center>
             <br/>
 
