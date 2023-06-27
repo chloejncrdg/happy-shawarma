@@ -16,6 +16,9 @@ export default function Admin() {
   const [avgOrderCount, setAvgOrderCount] = useState(0)
   const [bestSelling, setBestSelling] = useState("")
 
+  // for daily orders 
+  const [dailyOrders, setDailyOrders] = useState([])
+
 
   // for linechart
   const [groupIncome, setGroupIncome] = useState([])
@@ -37,6 +40,7 @@ export default function Admin() {
     handleGroupIncome()
     handleGroupCount()
     handleBestSelling()
+    displayOrderList()
   }, [])
 
   useEffect(() => {
@@ -140,25 +144,178 @@ export default function Admin() {
     }
   }
 
+  // to handle daily orders
+  async function displayOrderList() {
+    try {
+      const response = await axios.get("http://localhost:8800/displayOrders")
+      setDailyOrders(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
 
       <div>
-
-      {/* Divs for navbar here */}
-
+        <nav className='navbar navbar-expand-lg navbar-dark bg-color fixed-top'>
+            <a className='navbar-brand' href='/'><img src={logo} alt='Company Logo'/></a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className='navbar-toggler-icon'></span>
+            </button>
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/">HOME</a>
+                  </li>
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="/menu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      MENU
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a className="dropdown-item" href="menu.html#silog">Silog Meals</a>
+                      <a className="dropdown-item" href="menu.html#shawarma">Shawarma Meals</a>
+                      <a className="dropdown-item" href="menu.html#beverages">Beverages</a>
+                    </div>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href='/admin'>ADMIN</a>
+                  </li>
+                </ul>
+              </div>
+        </nav>
       </div>
 
       <main>
-
-        <div>
-
-        {/* Divs for cover here */}
-
+      <div className='cover'>
+        <video className="admin-video" src={bg} autoPlay loop muted></video>
+          <div className='admin-home-text'>
+            <h1>Hello, Admin!</h1>
+            {/* <p>Check your daily and weekly report here!</p> */}
+          </div>
+        </div>
+        
+       
+        <div className='admin-details-bg'>
+          <div className='admin-stuff'>
+            <br/>
+              <div className='admin-grid'>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Total Income for today:</h1>
+                  <h1>{dailyIncome}</h1>
+                </div>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Weekly Income:</h1>
+                  <h1>{weeklyIncome}</h1>
+                </div>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Daily order count:</h1>
+                  <h1>{orderCount}</h1>
+                </div>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Average Daily Income:</h1>
+                  <h1>{avgDailyIncome}</h1>
+                </div>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Average Orders for the Week: </h1>
+                  <h1>{avgOrderCount}</h1>
+                </div>
+                <div className='admin-report'>
+                  <h1 className='report-title'>Best Selling Product: </h1>
+                  <h1>{bestSelling}</h1>
+                </div>
+            </div>
+          </div>
         </div>
 
-        <div>
+        <div className='admin-orderList'>
+          <h1>TODAY'S ORDERS</h1>
+          <table className='admin-orders-table'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Order Method</th>
+                <th>Orders</th>
+              </tr>
+            </thead>
+            <tbody>
+            {dailyOrders.map(order => (
+            <tr className='admin-order' key={order.name}>
+                  <td className='check-td'><input type='checkbox'/></td>
+                  <td className='name-td'>{order.name}</td>
+                  <td className='address-td'>{order.address}</td>
+                  <td className='contact-td'>{order.contact}</td>
+                  <td className='method-td'>{order.orderMethod}</td>
+                  <td className='order-td'>{order.orders}</td>
+                </tr>
+              ))}
+            </tbody>
+        </table>
+        </div>
+
+        <div className='grid-charts'>
+          <div className='lineChart'>
+                <CChart
+                type="line" 
+                data={{
+                  labels: orderDateArray,
+                  datasets: [
+                    {
+                      label: "Daily Income",
+                      backgroundColor: "#FFA836",
+                      borderColor: "#FFA836",
+                      pointBackgroundColor: "#FFA836",
+                      pointBorderColor: "#fff",
+                      data: sumPriceArray,
+                    }
+                  ]
+                }}
+                options ={{
+                  tooltips: false
+                }}
+              />
+            </div>
+
+            <div className='barChart'>
+              <CChart
+              type="bar"
+              data={{
+                labels: countDateArray,
+                datasets: [
+                  {
+                    label: 'Order Count',
+                    backgroundColor: ' #FF8C00',
+                    data: countArray,
+                  },
+                ],
+              }}
+              labels="months"
+            />
+            </div>
+
+            <div className='pieChart'>
+              <CChart
+                type="doughnut"
+                data={{
+                  labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                  datasets: 
+                  [
+                    {
+                      backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+                      data: [40, 20, 80, 10],
+                    },
+                  ],
+                }}
+              />
+          </div>
+        </div>
+
+        
+
+        {/* <div>
           <div className='dailyIncome'>
             <h1>Total Income for today:</h1>
             <h1>{dailyIncome}</h1>
@@ -239,12 +396,8 @@ export default function Admin() {
           />
           </div>
 
-        </div>
+        </div> */}
       </main>
-
-      
-
-
     </div>
   )
 }

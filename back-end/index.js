@@ -112,6 +112,14 @@ app.get("/bestSelling", (req, res) => {
     })
 })
 
+app.get("/displayOrders", (req, res) => {
+    const q = "SELECT name, address, contact, orderMethod, paymentMethod, GROUP_CONCAT(CONCAT(quantity, ' x ', productName) SEPARATOR ', ') AS orders FROM orderdetails WHERE DATE(orderDate) = CURDATE() GROUP BY name, address, contact, orderMethod, paymentMethod;"
+    db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.send(data)
+    })
+})
+
 
 app.listen(8800, ()=> {
     console.log("Connected to backend!")

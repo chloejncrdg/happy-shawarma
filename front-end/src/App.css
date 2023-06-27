@@ -1,5 +1,7 @@
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 * {
-    font-family: Montserrat, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -173,7 +175,7 @@ button:hover {
 }
 
 .video-container{
-  z-index: -1;
+  z-index: 1;
   position: relative;
 }
 
@@ -567,3 +569,166 @@ footer p{
   font-size: 20px;
   margin: auto;
 }
+
+
+.admin-video {
+  /* z-index: 1; */
+  position: relative;
+  opacity: 0.3;
+}
+
+.admin-home-text {
+  position: absolute;
+  top: 25%;
+  left: 33%;
+  margin: auto;
+  text-align: left;
+
+}
+
+.admin-home-text h1 {
+  text-align: center;
+  color: #e55e25;
+  font-size: 6rem;
+  font-weight: 700;
+  text-shadow: .5px 2px 3px #5b2b07;
+}
+
+.admin-home-text p {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #e55e25;
+}
+
+.admin-details-bg {
+  width: 100%;
+  background: #e55e25;
+  display: flex;
+  height: 85vh;
+  z-index: 1;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-gap: 20px;
+}
+  
+.admin-stuff {
+  padding: 50px;
+  flex: 1;
+  background-color: #e55e25;
+  overflow-y: auto;
+  box-shadow: 0px 0px 3px #888888;
+  z-index: 1;
+}
+
+.admin-report {
+  display: flex;
+  padding: 3rem;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  background-color: white;
+  height: 15rem;
+  border-radius: 12px;
+}
+
+.report-title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  text-align: left;
+  color: #e55e25;
+  font-weight: 700;
+}
+
+.admin-orderList {
+  background-color: white;
+  margin-top: -20px;
+  width: 100%;
+  height: 80vh;
+  padding: 4rem;
+}
+
+.admin-orderList h1 {
+  display: grid;
+  place-items: center;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  color: #e55e25;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.admin-orders-table tbody {
+  display: block;
+  height: 45vh;
+  overflow: auto;
+}
+
+.admin-orders-table td {
+  padding: 0.6rem;
+}
+
+.admin-orders-table thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.admin-orders-table thead {
+  width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+.admin-orders-table th, td {
+  padding: 0 15px;
+}
+
+.admin-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-orders-table tr:nth-child(even) {
+  background-color: #f5c695;
+}
+
+.admin-orders-table th:nth-child(5), .method-td {
+  width: 11%;
+}
+
+.admin-orders-table th:nth-child(3), .address-td {
+  width: 23%;
+}
+
+.admin-orders-table th:last-child, .order-td {
+  width: 40%;
+}
+
+.admin-orders-table th:first-child, .check-td {
+  width: 3%;
+}
+
+.check-td input {
+  width: 1rem;
+  height: 1rem;
+
+}
+
+
+.grid-charts {
+  display: grid;
+  place-items: center;
+}
+
+
+/* .admin-orders-table th:nth-child(3), .contact-td {
+  width: 10%;
+} */
+
+
+
+
+
