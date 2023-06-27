@@ -1,7 +1,7 @@
 const silogCheese = [
     {
         id: 4,
-        image: "picture.jpg",
+        image: "longsilog.jpg",
         title: "Longsilog",
         price: 55,
         upgrade: "Buy 1-Take 1: Longsilog",
@@ -9,7 +9,7 @@ const silogCheese = [
     }, 
     {
         id: 5,
-        image: "picture.jpg",
+        image: "cornsilog.jpg",
         title: "Cornsilog",
         price: 65,
         upgrade: "Buy 1-Take 1: Cornsilog",
@@ -17,7 +17,7 @@ const silogCheese = [
     }, 
     {
         id: 6,
-        image: "picture.jpg",
+        image: "hamsilog.jpg",
         title: "Hamsilog",
         price: 55,
         upgrade: "Buy 1-Take 1: Hamsilog",
@@ -25,7 +25,7 @@ const silogCheese = [
     }, 
     {
         id: 7,
-        image: "picture.jpg",
+        image: "tosilog.jpg",
         title: "Tosilog",
         price: 65,
         upgrade: "Buy 1-Take 1: Tosilog",
@@ -33,7 +33,7 @@ const silogCheese = [
     }, 
     {
         id: 8,
-        image: "picture.jpg",
+        image: "bacsilog.png",
         title: "Bacsilog",
         price: 65,
         upgrade: "Buy 1-Take 1: Bacsilog",
@@ -41,7 +41,7 @@ const silogCheese = [
     }, 
     {
         id: 9,
-        image: "picture.jpg",
+        image: "tapsilog.jpg",
         title: "Tapsilog",
         price: 65,
         upgrade: "Buy 1-Take 1: Tapsilog",
@@ -49,7 +49,7 @@ const silogCheese = [
     }, 
     {
         id: 10,
-        image: "picture.jpg",
+        image: "hotsilog.jpg",
         title: "Hotsilog",
         price: 55,
         upgrade: "Buy 1-Take 1: Hotsilog",

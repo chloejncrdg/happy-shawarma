@@ -1,7 +1,7 @@
 const beverages = [
     {
         id: 11,
-        image: "",
+        image: "drinkLemonade.jpg",
         title: "Regular Blue Lemonade",
         price: 15,
         upgrade: "Large Blue Lemonade",
@@ -9,7 +9,7 @@ const beverages = [
     }, 
     {
         id: 12,
-        image: "",
+        image: "drinkGulaman.png",
         title: "Regular Gulaman",
         price: 15,
         upgrade: "Large Gulaman",
@@ -17,7 +17,7 @@ const beverages = [
     }, 
     {
         id: 13,
-        image: "",
+        image: "drinkWater.jpg",
         title: "Regular Water",
         price: 18,
         upgrade: "Large Water",
@@ -25,7 +25,7 @@ const beverages = [
     },
     {
         id: 14,
-        image: "",
+        image: "drinkSoftDrinks.png",
         title: "Regular Soft Drinks",
         price: 22,
         upgrade: "Large Soft Drinks",
