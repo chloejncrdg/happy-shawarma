@@ -105,7 +105,7 @@ export default function Menu() {
                   <a className="nav-link" href="/">HOME</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/menu" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <a className="nav-link" href="/menu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     MENU
                   </a>
                 </li>
@@ -129,7 +129,6 @@ export default function Menu() {
         <div className='content'>
           <div className='menu'>
             <h2 className='menu-category' id='shawarma'>Shawarma Meals</h2>
-            <h3 className='step'>Step 1: Choose your order</h3>
             <br/>
             <div className='menu-grid'>
               {shawarmaMeals.map((product) => (
@@ -153,7 +152,7 @@ export default function Menu() {
             <div className='menu-grid'>
               {silogCheese.map((product) => (
                 <div className='menu-item' key={product.id}>
-                  <img className='item-picture' src={require(`../images/${product.image}`)} alt='Shawarma Meal'/>
+                  <img className='item-picture' src={require(`../images/${product.image}`)} alt='Silog Meal'/>
                   <h5 className='item-name'>{product.title}</h5>
                   <hr className='solid'></hr>
 
@@ -174,6 +173,7 @@ export default function Menu() {
             <div className='menu-grid'>
               {beverages.map((product) => (
                 <div className='menu-item' key={product.id}>
+                  <img className='item-picture' src={require(`../images/${product.image}`)} alt='Beverages'/>
                   <h5 className='item-name'>{product.title}</h5>
                   <hr className='solid'></hr>
 
