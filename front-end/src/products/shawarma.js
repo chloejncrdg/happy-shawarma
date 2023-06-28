@@ -1,7 +1,7 @@
 const shawarmaMeals = [
     {
         id: 1,
-        image: "picture.jpg",
+        image: "shawarmaPita.jpg",
         title: "Shawarma on Pita Bread",
         price: 69,
         upgrade: "Buy 1-Take 1: Shawarma on Pita Bread",
@@ -9,7 +9,7 @@ const shawarmaMeals = [
     }, 
     {
         id: 2,
-        image: "picture.jpg",
+        image: "shawarmaRice.jpg",
         title: "Shawarma Rice Bowl",
         price: 85,
         upgrade: "Buy 1-Take 1: Shawarma Rice Bowl",
@@ -17,7 +17,7 @@ const shawarmaMeals = [
     }, 
     {
         id: 3,
-        image: "picture.jpg",
+        image: "shawarmaNachos.png",
         title: "Shawarma with Nachos",
         price: 79,
         upgrade: "Buy 1-Take 1: Shawarma with Nachos",
