@@ -761,7 +761,48 @@ footer p{
   width: 10%;
 } */
 
+/* log in modal */
+.modallogin h2{
+  text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: #3e3e3e;
+    line-height: 55px;
+}
 
+.modallogin .modal-bg {
+  position: fixed;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e55e25;
+  /* backdrop-filter: blur(6px);  */
+}
+
+.modallogin .orders-container button {
+  display: block;
+  background: #e55e25;
+  color: white;
+  font-weight: 600;
+  padding: 5px 15px 5px 15px;
+  border-radius: 20px;
+  border: none;
+  font-size: 20px;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.admin-input-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
 
 
 

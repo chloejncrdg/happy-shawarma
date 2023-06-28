@@ -16,6 +16,12 @@ export default function Admin() {
   const [avgOrderCount, setAvgOrderCount] = useState(0)
   const [bestSelling, setBestSelling] = useState("")
 
+
+  const [showModal, setShowModal] = useState(true); // State variable for modal visibility
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(false);
+
   // for daily orders 
   const [dailyOrders, setDailyOrders] = useState([])
 
@@ -25,7 +31,6 @@ export default function Admin() {
   const [sumPriceArray, setSumPriceArray] = useState([])
   const [orderDateArray, setOrderDateArray] = useState([])
   
-
   // for barchart
   const [groupCount, setGroupCount] = useState([])
   const [countArray, setCountArray] = useState([])
@@ -35,6 +40,7 @@ export default function Admin() {
   const [groupBestSelling, setGroupBestSelling] = useState([]);
   const [sellingProductsArray, setSellingProductsArray] = useState([]);
   const [sellingCountArray, setSellingCountArray] = useState([]);
+
 
   useEffect(() => {
     handleDailyIncome()
@@ -173,9 +179,54 @@ export default function Admin() {
     }
   }
 
+  async function handleLogin() {
+    try {
+      const response = await axios.post('http://localhost:8800/admin', {
+        username,
+        password
+      });
+
+      if (response.data.success) {
+        setShowModal(false);
+      } else {
+        setLoginError(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
-
+      <div className="modallogin">
+        {showModal && (
+          <div className="modal-bg">
+            <div className="orders-container">
+              <h2>Admin Login</h2>
+              {loginError && <p className="error">Invalid username or password.</p>}
+              <div className="admin-input-container">
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="admin-input-container">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <button onClick={handleLogin}>Login</button>
+            </div>
+          </div>
+        )}
+      </div>
       <div>
         <nav className='navbar navbar-expand-lg navbar-dark bg-color fixed-top'>
             <a className='navbar-brand' href='/'><img src={logo} alt='Company Logo'/></a>

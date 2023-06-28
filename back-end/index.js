@@ -25,6 +25,25 @@ app.get("/", (req, res) => {
     res.json("Hello, this is the backend!")
 })
 
+app.post("/admin", (req, res) => {
+    const { username, password } = req.body;
+    // Check the username and password against the database
+    const query = "SELECT * FROM users WHERE username = ? AND password = ?";
+    db.query(query, [username, password], (err, results) => {
+        if (err) {
+            console.error("Error executing the query:", err);
+            return res.json({ success: false });
+        }
+        if (results.length > 0) {
+            // Credentials match a user in the database
+            res.json({ success: true });
+        } else {
+            // Credentials do not match any user in the database
+            res.json({ success: false });
+        }
+    });
+});
+
   
 app.post("/orders", (req, res) => {
     const q = "INSERT INTO orderdetails (orderDate, name, address, contact, orderMethod, paymentMethod, productID, productName, quantity, price) VALUES ?"
