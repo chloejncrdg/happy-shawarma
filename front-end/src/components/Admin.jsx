@@ -12,7 +12,7 @@ export default function Admin() {
   const [dailyIncome, setDailyIncome] = useState(0)
   const [weeklyIncome, setWeeklyIncome] = useState(0)
   const [orderCount, setOrderCount] = useState(0)
-  const [avgDailyIncome, setAvgDailyIncome] = useState(0)
+  const [avgWeeklyIncome, setAvgWeeklyIncome] = useState(0)
   const [avgOrderCount, setAvgOrderCount] = useState(0)
   const [bestSelling, setBestSelling] = useState("")
 
@@ -46,7 +46,7 @@ export default function Admin() {
     handleDailyIncome()
     handleWeeklyIncome()
     handleCountOrders()
-    handleAvgDailyIncome()
+    handleAvgWeeklyIncome()
     handleAvgOrderCount()
     handleGroupIncome()
     handleGroupCount()
@@ -109,11 +109,11 @@ export default function Admin() {
     }
   }
 
-  async function handleAvgDailyIncome() {
+  async function handleAvgWeeklyIncome() {
     try {
-      const response = await axios.get("http://localhost:8800/avgDailyIncome")
+      const response = await axios.get("http://localhost:8800/avgWeeklyIncome")
       const avgResult = response.data[0]['AVG(daily_price)'];
-      setAvgDailyIncome(avgResult)
+      setAvgWeeklyIncome(avgResult)
     } catch (error) {
       console.log(error);
     }
@@ -279,7 +279,7 @@ export default function Admin() {
                 </div>
                 <div className='admin-report'>
                   <h1 className='report-title'>Average Weekly Income:</h1>
-                  <h1>₱ {avgDailyIncome}</h1>
+                  <h1>₱ {avgWeeklyIncome}</h1>
                 </div>
                 <div className='admin-report'>
                   <h1 className='report-title'>Average Orders for the Week: </h1>
